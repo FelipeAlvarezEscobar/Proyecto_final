@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados de Evaluación de Modelos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: white;
+            color: black;
+            padding: 10px 20px;
+            border-bottom: 2px solid #ddd;
+        }
+        header img {
+            height: 50px;
+            margin-right: 20px;
+        }
+        header .title {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0;
+        }
+        .container {
+            padding: 20px;
+        }
+        .back-button-container {
+            margin-bottom: 20px;
+        }
+        .back-button {
+            background-color: #0056a3;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            text-decoration: none;
+        }
+        .back-button:hover {
+            background-color: #003f7f;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #0056a3;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+        .chart-container {
+            margin: 40px auto;
+            text-align: center;
+        }
+        .chart-container h2 {
+            margin-bottom: 20px;
+        }
+        .table-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div style="display: flex; align-items: center;">
+            <img src="{{ url_for('static', filename='pucv.png') }}" alt="PUCV Logo">
+            <h1 class="title">Resultados de Evaluación de Modelos</h1>
+        </div>
+    </header>
+    <div class="container">
+        <div class="back-button-container">
+            <a href="/" class="back-button">Volver al Menú Principal</a>
+        </div>
+        <!-- Tabla con los resultados -->
+        <div class="table-container">
+            <h2>Resultados de Modelos</h2>
+            <table>
+                <thead>
+                    <tr>
+                        {% for column in table_data.columns %}
+                            <th>{{ column }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in table_data.iterrows() %}
+                        <tr>
+                            {% for value in row[1] %}
+                                <td>{{ value }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <!-- Gráfico con los resultados -->
+        <div class="chart-container">
+            <h2>Comparación de Precisión de Modelos</h2>
+            {{ accuracy_chart|safe }}
+        </div>
+    </div>
+</body>
+</html>

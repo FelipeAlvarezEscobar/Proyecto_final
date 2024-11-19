@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis Exploratorio - Data Viewer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: white;
+            color: black;
+            padding: 10px 20px;
+            border-bottom: 2px solid #ddd;
+        }
+        header img {
+            height: 50px;
+            margin-right: 20px;
+        }
+        header .title {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0;
+        }
+        .container {
+            padding: 20px;
+        }
+        .back-button-container {
+            margin-bottom: 20px;
+        }
+        .back-button {
+            background-color: #0056a3;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            text-decoration: none;
+        }
+        .back-button:hover {
+            background-color: #003f7f;
+        }
+        .chart-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='pucv.png') }}" alt="PUCV Logo">
+        <h1 class="title">Análisis Exploratorio</h1>
+    </header>
+    <div class="container">
+        <div class="back-button-container">
+            <a href="/" class="back-button">Volver al Menú Principal</a>
+        </div>
+        <div class="chart-container">
+            <h2>Histograma de Notas de Admisión</h2>
+            {{ graphs.histogram|safe }}
+        </div>
+        <div class="chart-container">
+            <h2>Proporción de Becados</h2>
+            {{ graphs.pie_chart|safe }}
+        </div>
+        <div class="chart-container">
+            <h2>Unidades Curriculares Aprobadas por Resultado</h2>
+            {{ graphs.bar_plot|safe }}
+        </div>
+        <div class="chart-container">
+            <h2>Mapa de Calor de Correlación</h2>
+            {{ graphs.correlation_heatmap|safe }}
+        </div>
+    </div>
+</body>
+</html>

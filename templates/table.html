@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla - Data Viewer</title>
+    <style>
+        /* Estilo igual que antes */
+    </style>
+</head>
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='pucv.png') }}" alt="PUCV Logo">
+        <h1>Data Viewer - Pontificia Universidad Católica de Valparaíso</h1>
+    </header>
+    <div class="container">
+        <div class="back-button-container">
+            <a href="/" class="back-button">Volver al Menú Principal</a>
+        </div>
+        <div class="pagination">
+            {% if page > 1 %}
+                <a href="/table?page={{ page - 1 }}">Previous</a>
+            {% endif %}
+            Page {{ page }} of {{ total_pages }}
+            {% if page < total_pages %}
+                <a href="/table?page={{ page + 1 }}">Next</a>
+            {% endif %}
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    {% for column in data[0].keys() %}
+                        <th>{{ column_titles[column] }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                    <tr>
+                        {% for value in row.values() %}
+                            <td>{{ value }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="pagination">
+            {% if page > 1 %}
+                <a href="/table?page={{ page - 1 }}">Previous</a>
+            {% endif %}
+            Page {{ page }} of {{ total_pages }}
+            {% if page < total_pages %}
+                <a href="/table?page={{ page + 1 }}">Next</a>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla - Data Viewer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: white;
+            color: black;
+            padding: 10px 20px;
+            border-bottom: 2px solid #ddd;
+        }
+        header img {
+            height: 50px;
+            margin-right: 20px;
+        }
+        header .title {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0;
+        }
+        .container {
+            padding: 20px;
+        }
+        .back-button-container {
+            margin-bottom: 20px;
+        }
+        .back-button, .pagination a {
+            background-color: #0056a3;
+            color: black;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .back-button:hover, .pagination a:hover {
+            background-color: #003f7f;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #0056a3;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+        .pagination {
+            margin: 20px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div style="display: flex; align-items: center;">
+            <img src="{{ url_for('static', filename='pucv.png') }}" alt="PUCV Logo">
+            <h1 class="title">DATA VIEW - Pontificia Universidad Católica de Valparaíso</h1>
+        </div>
+    </header>
+    <div class="container">
+        <div class="back-button-container">
+            <a href="/" class="back-button">Volver al Menú Principal</a>
+        </div>
+        <div class="pagination">
+            {% if page > 1 %}
+                <a href="/table?page={{ page - 1 }}">Previous</a>
+            {% endif %}
+            Page {{ page }} of {{ total_pages }}
+            {% if page < total_pages %}
+                <a href="/table?page={{ page + 1 }}">Next</a>
+            {% endif %}
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    {% for column in data[0].keys() %}
+                        <th>{{ column_titles[column] }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                    <tr>
+                        {% for value in row.values() %}
+                            <td>{{ value }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="pagination">
+            {% if page > 1 %}
+                <a href="/table?page={{ page - 1 }}">Previous</a>
+            {% endif %}
+            Page {{ page }} of {{ total_pages }}
+            {% if page < total_pages %}
+                <a href="/table?page={{ page + 1 }}">Next</a>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

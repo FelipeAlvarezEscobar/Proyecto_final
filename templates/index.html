@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - Data Viewer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            color: black;
+            padding: 10px 20px;
+            border-bottom: 2px solid #ddd;
+        }
+        header img {
+            height: 50px;
+            margin-right: 20px;
+        }
+        header h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            padding: 50px;
+        }
+        .show-table-btn {
+            background-color: #0056a3;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .show-table-btn:hover {
+            background-color: #003f7f;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='pucv.png') }}" alt="PUCV Logo">
+        <h1>Data Viewer - Pontificia Universidad Católica de Valparaíso</h1>
+    </header>
+    <div class="container">
+        <a href="/table">
+            <button class="show-table-btn">Base de datos completa</button>
+        </a>
+        <a href="/graphs">
+            <button class="show-table-btn">Análisis Exploratorio</button>
+        </a>
+        <a href="/models"> <!-- Enlace a la nueva sección de modelos -->
+            <button class="show-table-btn">Modelos de Predicción</button>
+        </a>
+        
+    </div>
+</body>
+</html>
